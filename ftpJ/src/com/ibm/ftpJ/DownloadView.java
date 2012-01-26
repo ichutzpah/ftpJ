@@ -3,10 +3,10 @@ package com.ibm.ftpJ;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class DeleteView extends JFrame{
+public class DownloadView extends JFrame{
 	final ViewController controller;
 	
-	 public DeleteView (ViewController vcontroller){
+	 public DownloadView (ViewController vcontroller){
 		 super();
 		 this.controller=vcontroller;
 		 

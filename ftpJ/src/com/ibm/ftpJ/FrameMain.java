@@ -2,6 +2,10 @@ package com.ibm.ftpJ;
 
 import java.awt.EventQueue;
 
+import javax.swing.JPanel;
+
+
+
 public class FrameMain {
 	
 
@@ -10,7 +14,9 @@ public class FrameMain {
             public void run() {
                 ViewController viewController = new ViewController();
                 MainView main = new MainView(viewController);
-               // DetailView detail = new DetailView(viewController);
+                //DeleteView delete = new DeleteView(viewController);
+                //DownloadView download = new DownloadView(viewController);
+                UploadView upload = new UploadView(viewController);
                 viewController.showView("Main");
             }
         });
