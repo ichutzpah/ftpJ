@@ -6,18 +6,28 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.io.File;
+import java.util.Locale;
+
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 
 
-	 class MainView extends JFrame {
+	 class MainView extends JFrame implements ActionListener{
 	        final ViewController viewController;
+			private JButton btnDownload;
+			private JRadioButton local;
+			private JRadioButton server;
+			private JButton btnDelete;
+			private ButtonGroup grp;
+	        
 	       
 	        
 	        public MainView(ViewController controller){
@@ -44,14 +54,17 @@ import javax.swing.SwingConstants;
 	            gbc_btnUpload.gridy = 2;
 	            getContentPane().add(btnUpload, gbc_btnUpload);
 	            
-	            JButton btnDownload = new JButton("Download");
+	            btnDownload = new JButton("Download");
 	            GridBagConstraints gbc_btnDownload = new GridBagConstraints();
 	            gbc_btnDownload.insets = new Insets(0, 0, 5, 5);
 	            gbc_btnDownload.gridx = 10;
 	            gbc_btnDownload.gridy = 2;
 	            getContentPane().add(btnDownload, gbc_btnDownload);
+	            btnDownload.addActionListener(this);
 	            
-	            JRadioButton local = new JRadioButton("local");
+	            
+	            
+	            local = new JRadioButton("local");
 	            local.setHorizontalAlignment(SwingConstants.LEFT);
 	            GridBagConstraints gbc_local = new GridBagConstraints();
 	            gbc_local.insets = new Insets(0, 0, 5, 5);
@@ -59,7 +72,8 @@ import javax.swing.SwingConstants;
 	            gbc_local.gridy = 3;
 	            getContentPane().add(local, gbc_local);
 	            
-	            JRadioButton server = new JRadioButton("server");
+	            
+	            server = new JRadioButton("server");
 	            server.setHorizontalAlignment(SwingConstants.LEFT);
 	            GridBagConstraints gbc_server = new GridBagConstraints();
 	            gbc_server.insets = new Insets(0, 0, 5, 5);
@@ -67,14 +81,14 @@ import javax.swing.SwingConstants;
 	            gbc_server.gridy = 4;
 	            getContentPane().add(server, gbc_server);
 	            
-	            JButton btnDelete = new JButton("Delete");
+	            btnDelete = new JButton("Delete");
 	            GridBagConstraints gbc_btnDelete = new GridBagConstraints();
 	            gbc_btnDelete.insets = new Insets(0, 0, 0, 5);
 	            gbc_btnDelete.gridx = 7;
 	            gbc_btnDelete.gridy = 9;
 	            getContentPane().add(btnDelete, gbc_btnDelete);
 	            
-	            ButtonGroup grp = new ButtonGroup();
+	            grp = new ButtonGroup();
 	    		grp.add(server);
 	    		grp.add(local);
 	            
@@ -98,5 +112,27 @@ import javax.swing.SwingConstants;
 	            
 	            
 	        }
+
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+				if (e.getSource()==btnDownload){
+					
+					boolean returnval=true;
+					//int returnval=fcChooser.showOpenDialog(DownloadLocalView.this);
+					if (returnval==local.isSelected()){
+						viewController.showView("Download");
+						
+					}
+					if (returnval==server.isSelected()){
+						
+						viewController.showView("DownloadRemote");
+					}
+				}
+				
+				
+			}
 	    }
 

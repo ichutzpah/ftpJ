@@ -13,14 +13,19 @@ import javax.swing.JFileChooser;
 import java.awt.Frame;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
-import javax.swing.SwingConstants;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class UploadView extends JFrame{
+import javax.swing.SwingConstants;
+import javax.swing.JButton;
+
+public class UploadView extends JFrame implements ActionListener{
 	
 	final ViewController controller;
 	private JTextField tHostname;
 	private JPasswordField hPassword;
 	private JTextField tPath;
+	private JButton btnBack;
 	 public UploadView (ViewController vcontroller){
 	 super();
 	 this.controller=vcontroller;
@@ -45,7 +50,7 @@ public class UploadView extends JFrame{
 	 tHostname = new JTextField();
 	 tHostname.setText("ip/hostname");
 	 GridBagConstraints gbc_tHostname = new GridBagConstraints();
-	 gbc_tHostname.insets = new Insets(0, 0, 5, 0);
+	 gbc_tHostname.insets = new Insets(0, 0, 5, 5);
 	 gbc_tHostname.fill = GridBagConstraints.HORIZONTAL;
 	 gbc_tHostname.gridx = 3;
 	 gbc_tHostname.gridy = 1;
@@ -64,7 +69,7 @@ public class UploadView extends JFrame{
 	 hPassword = new JPasswordField();
 	 hPassword.setText("Password");
 	 GridBagConstraints gbc_hPassword = new GridBagConstraints();
-	 gbc_hPassword.insets = new Insets(0, 0, 5, 0);
+	 gbc_hPassword.insets = new Insets(0, 0, 5, 5);
 	 gbc_hPassword.fill = GridBagConstraints.HORIZONTAL;
 	 gbc_hPassword.gridx = 3;
 	 gbc_hPassword.gridy = 2;
@@ -79,12 +84,19 @@ public class UploadView extends JFrame{
 	 
 	 tPath = new JTextField();
 	 GridBagConstraints gbc_tPath = new GridBagConstraints();
-	 gbc_tPath.insets = new Insets(0, 0, 5, 0);
+	 gbc_tPath.insets = new Insets(0, 0, 5, 5);
 	 gbc_tPath.fill = GridBagConstraints.HORIZONTAL;
 	 gbc_tPath.gridx = 3;
 	 gbc_tPath.gridy = 3;
 	 getContentPane().add(tPath, gbc_tPath);
 	 tPath.setColumns(10);
+	 
+	 btnBack = new JButton("Back");
+	 GridBagConstraints gbc_btnBack = new GridBagConstraints();
+	 gbc_btnBack.insets = new Insets(0, 0, 5, 5);
+	 gbc_btnBack.gridx = 2;
+	 gbc_btnBack.gridy = 4;
+	 getContentPane().add(btnBack, gbc_btnBack);
 	 
 	 JFileChooser fileChooser = new JFileChooser();
 	 fileChooser.setDialogTitle("Choose File");
@@ -94,10 +106,18 @@ public class UploadView extends JFrame{
 	 gbc_fileChooser.gridheight = 20;
 	 gbc_fileChooser.fill = GridBagConstraints.BOTH;
 	 gbc_fileChooser.gridwidth = 6;
-	 gbc_fileChooser.insets = new Insets(0, 0, 5, 5);
 	 gbc_fileChooser.gridx = 2;
 	 gbc_fileChooser.gridy = 5;
 	 getContentPane().add(fileChooser, gbc_fileChooser);
 	 fileChooser.setMultiSelectionEnabled(true);
+	 btnBack.addActionListener(this);
  }
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if (e.getSource()==btnBack){
+			
+			this.controller.showView("Main");
+		}
+	}
 }

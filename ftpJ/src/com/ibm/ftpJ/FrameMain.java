@@ -15,7 +15,8 @@ public class FrameMain {
                 ViewController viewController = new ViewController();
                 MainView main = new MainView(viewController);
                 //DeleteView delete = new DeleteView(viewController);
-                //DownloadView download = new DownloadView(viewController);
+                DownloadLocalView downloadLocal = new DownloadLocalView(viewController);
+                DownloadRemoteView downloadRemote = new DownloadRemoteView(viewController);
                 UploadView upload = new UploadView(viewController);
                 viewController.showView("Main");
             }
